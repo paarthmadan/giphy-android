@@ -16,9 +16,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final String baseUrl = "http://api.giphy.com/v1/gifs/";
 
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC", new AsyncHttpResponseHandler() {
+        client.get(baseUrl + "search?q=funny+cat&api_key=dc6zaTOxFJmzC", new AsyncHttpResponseHandler() {
 
             @Override
             public void onStart() {
@@ -31,28 +32,19 @@ public class MainActivity extends AppCompatActivity {
 
                     String json = new String(response);
 
-
                     try {
                         JSONObject allJSON = new JSONObject(json);
-
-                        System.out.println(allJSON);
-
                         JSONObject imageData = allJSON.getJSONArray("data").getJSONObject(0).getJSONObject("images");
+                        JSONObject image = imageData.getJSONObject("fixed_height");
+                        String imageUrl = image.get("url").toString();
 
-                        System.out.println(imageData);
-
-                        String image = imageData.getJSONObject("fixed_height").get("url").toString();
-
-                        System.out.println(image);
-
-
-
+                        System.out.println(imageUrl);
 
                     } catch (Exception e){
                         System.out.println(e.getMessage());
                     }
 
-                System.out.println("Finished");
+
             }
 
             @Override
