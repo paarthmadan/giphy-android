@@ -16,6 +16,9 @@ import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity {
 
+    final String baseUrl = "http://api.giphy.com/v1/gifs/search";
+    final String apiKey = "dc6zaTOxFJmzC";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,16 +37,19 @@ public class MainActivity extends AppCompatActivity {
                         INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
 
-                System.out.println(queryText);
+                fetch(queryText);
 
             }
         });
 
 
-        final String baseUrl = "http://api.giphy.com/v1/gifs/search";
-        final String apiKey = "dc6zaTOxFJmzC";
 
-        String query = "drake";
+
+    }
+
+    public void fetch(String query){
+
+
         String url = baseUrl + "?q=" + query + "&api_key="  + apiKey;
 
 
@@ -57,19 +63,19 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
-                    String json = new String(response);
+                String json = new String(response);
 
-                    try {
-                        JSONObject allJSON = new JSONObject(json);
-                        JSONObject imageData = allJSON.getJSONArray("data").getJSONObject(0).getJSONObject("images");
-                        JSONObject image = imageData.getJSONObject("fixed_height");
-                        String imageUrl = image.get("url").toString();
+                try {
+                    JSONObject allJSON = new JSONObject(json);
+                    JSONObject imageData = allJSON.getJSONArray("data").getJSONObject(0).getJSONObject("images");
+                    JSONObject image = imageData.getJSONObject("fixed_height");
+                    String imageUrl = image.get("url").toString();
 
-                        System.out.println(imageUrl);
+                    System.out.println(imageUrl);
 
-                    } catch (Exception e){
-                        System.out.println(e.getMessage());
-                    }
+                } catch (Exception e){
+                    System.out.println(e.getMessage());
+                }
 
 
             }
