@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
-                    System.out.println("Success");
-
                     String json = new String(response);
 
                     try {
