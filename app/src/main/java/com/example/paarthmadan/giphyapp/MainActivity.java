@@ -16,10 +16,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final String baseUrl = "http://api.giphy.com/v1/gifs/";
+        final String baseUrl = "http://api.giphy.com/v1/gifs/search";
+        final String apiKey = "dc6zaTOxFJmzC";
+
+        String query = "drake";
+        String url = baseUrl + "?q=" + query + "&api_key="  + apiKey;
+
 
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get(baseUrl + "search?q=funny+cat&api_key=dc6zaTOxFJmzC", new AsyncHttpResponseHandler() {
+        client.get(url, new AsyncHttpResponseHandler() {
 
             @Override
             public void onStart() {
