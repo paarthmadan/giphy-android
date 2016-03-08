@@ -12,7 +12,7 @@
     <EditText
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/input"
         android:layout_marginTop="25dp"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:text="Okay!"
         android:id="@+id/button"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/input"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp" />
 

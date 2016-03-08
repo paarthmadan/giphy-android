@@ -2,6 +2,10 @@ package com.example.paarthmadan.giphyapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
 import com.loopj.android.http.*;
 
 import org.json.JSONArray;
@@ -15,6 +19,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final Button button = (Button)findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText text = (EditText)findViewById(R.id.input);
+                String queryText = text.getText().toString();
+                
+                System.out.println(queryText);
+
+            }
+        });
+
 
         final String baseUrl = "http://api.giphy.com/v1/gifs/search";
         final String apiKey = "dc6zaTOxFJmzC";
