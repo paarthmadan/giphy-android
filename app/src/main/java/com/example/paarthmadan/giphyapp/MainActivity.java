@@ -3,6 +3,7 @@ package com.example.paarthmadan.giphyapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -26,7 +27,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText text = (EditText)findViewById(R.id.input);
                 String queryText = text.getText().toString();
-                
+
+
+                //hides keyboard onClick
+                InputMethodManager imm = (InputMethodManager) getSystemService(
+                        INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
                 System.out.println(queryText);
 
             }
