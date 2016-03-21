@@ -1,16 +1,19 @@
 package com.example.paarthmadan.giphyapp;
 
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.loopj.android.http.*;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
+import com.squareup.picasso.*;
+
+
 
 import cz.msebera.android.httpclient.Header;
 
@@ -18,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     final String baseUrl = "http://api.giphy.com/v1/gifs/search";
     final String apiKey = "dc6zaTOxFJmzC";
+    ImageView imageV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final Button button = (Button)findViewById(R.id.button);
+        imageV = (ImageView)findViewById(R.id.imageView);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,9 +78,16 @@ public class MainActivity extends AppCompatActivity {
 
                     System.out.println(imageUrl);
 
+                    Picasso.with(MainActivity.this).load(imageUrl).into(imageV);
+
+
+
+
                 } catch (Exception e){
                     System.out.println(e.getMessage());
                 }
+
+
 
 
             }
@@ -90,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
                 // called when request is retried
             }
         });
+
+
 
     }
 }
